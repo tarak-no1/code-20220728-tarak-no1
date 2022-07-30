@@ -22,8 +22,8 @@ class Server {
         this.appConfig();
         this.includeRoutes();
 
-        const host = process.env.NODE_SERVER_HOST || "0.0.0.0";
-        const port = process.env.NODE_SERVER_PORT || 3030;
+        const host = process.env.HOST || "0.0.0.0";
+        const port = process.env.PORT || 8080;
         this.app.set("host", host);
         this.app.set("port", port);
 
