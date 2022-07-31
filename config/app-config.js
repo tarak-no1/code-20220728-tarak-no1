@@ -2,6 +2,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const uuid = require("uuid");
 
+const DBConfig = require("./db-config");
+
 class AppConfig {
     constructor(app) {
         this.app = app;
@@ -20,9 +22,16 @@ class AppConfig {
     loadExpressConfig() {
         this.app.set("view engine", "html");
     }
+    loadDbConfig() {
+        this.app.use((req, res, next) => {
+            req.headers.sequelize = DBConfig.getSequelizeClient();
+            next();
+        });
+    }
     includeConfig() {
         this.loadAppLevelConfig();
         this.loadExpressConfig();
+        this.loadDbConfig();
     }
 }
 

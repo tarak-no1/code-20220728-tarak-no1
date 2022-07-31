@@ -14,6 +14,11 @@ class UsageRouter {
             multer.single("userData"),
             catchErrors(usageHandler.uploadUserData)
         );
+
+        this.router.get(
+            "/display",
+            catchErrors(usageHandler.displayData)
+        );
     }
     getRouter() {
         this.usageRoutes();

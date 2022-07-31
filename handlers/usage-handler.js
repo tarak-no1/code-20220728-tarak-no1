@@ -1,12 +1,25 @@
+const { loadUserDataIntoDb, displayData } = require("../services");
 const { getResponseObject } = require("../utils/supporter");
 
 class UsageHandler {
     async uploadUserData(requestData, headers) {
         const response = getResponseObject();
-        console.log(headers);
-        console.log(JSON.stringify(requestData, null, 2));
+
+        const { sequelize, file } = headers;
+
+        const jsonFilePath = file.path;
+
+        response.data = await loadUserDataIntoDb(sequelize, jsonFilePath);
+
+        return response;
+    }
+    
+    async displayData(requestData, headers) {
+        const response = getResponseObject();
 
         const { sequelize } = headers;
+
+        response.data = await displayData(sequelize);
 
         return response;
     }
