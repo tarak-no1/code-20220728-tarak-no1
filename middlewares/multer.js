@@ -1,8 +1,10 @@
 const multer = require("multer");
+const {dirname} = require("path");
+const directoryName = dirname(require.main.filename);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, process.cwd()+'/uploads')
+      cb(null, directoryName+'/uploads')
     },
     filename: function (req, file, cb) {
       const extension = file.originalname.split(".").pop();
