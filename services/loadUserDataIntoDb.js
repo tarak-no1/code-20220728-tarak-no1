@@ -11,7 +11,6 @@ const getStream = function (jsonFilePath) {
 };
 
 const loadUserDataIntoDbTable = async(model, dataToLoad) => {
-    console.log(dataToLoad)
     return createBulkData(model, dataToLoad, {});
 }
 
