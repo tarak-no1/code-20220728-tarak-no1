@@ -23,8 +23,9 @@ class AppConfig {
         this.app.set("view engine", "html");
     }
     loadDbConfig() {
+        const sequelize = DBConfig.getSequelizeClient();
         this.app.use((req, res, next) => {
-            req.headers.sequelize = DBConfig.getSequelizeClient();
+            req.headers.sequelize = sequelize;
             next();
         });
     }
