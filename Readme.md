@@ -39,7 +39,7 @@ For development, you will only need Node.js and a node global package, Yarn, ins
 
 ## Deployment process
 
-    Code will be push to github repository. And it will be automatically deployed in [heroku](https://dashboard.heroku.com/apps/code-20220728-tarak-no1)
+Code will be push to github repository. And it will be automatically deployed in [heroku](https://dashboard.heroku.com/apps/code-20220728-tarak-no1)
     
 ## APIs Used
     $ Json File Upload API: 
