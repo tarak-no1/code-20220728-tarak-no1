@@ -3,9 +3,8 @@ const displayData = require("../services/displayData");
 const sequelize = require("../config/db-config").getSequelizeClient();
 
 describe("Data display Check", () => {
-    it('data exists check', async () => {
+    it('data extraction check from db', async () => {
         const tableData = await displayData(sequelize);
-        expect(tableData).not.toHaveLength(0);
+        expect(tableData).toEqual(expect.anything());
     });
-
 });
