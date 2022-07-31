@@ -66,8 +66,24 @@ const getHealthRisk = (bmi) => {
 	return healthRisk;
 };
 
+const transformData = (data) => {
+    const height = data.HeightCm;
+    const weight = data.WeightKg;
+    const bmi = getBMI(weight, height);
+    const transformatedData = {
+        gender: data.Gender,
+        height,
+        weight,
+        bmi,
+        bmiCategory: getBMICategory(bmi),
+        healthRisk: getHealthRisk(bmi)
+    };
+    return transformatedData;
+};
+
 module.exports = {
 	isError,
     getResponseObject,
-	getBMI, getBMICategory, getHealthRisk
+	getBMI, getBMICategory, getHealthRisk,
+	transformData
 };

@@ -59,6 +59,7 @@ class Server {
                     throw error;
             }
         });
+        return this.app;
     }
 }
 
