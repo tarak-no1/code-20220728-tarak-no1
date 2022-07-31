@@ -36,7 +36,7 @@ describe("BMI calculator", () => {
         const weight = 77;
         const height = 180;
         const bmi = getBMI(weight, height);
-        expect(getHealthRisk(bmi)).toStrictEqual('Low risk');
+        expect(getHealthRisk(bmi)).toStrictEqual('Low ris');
         done();
     });
     test('Health Risk not matching check', (done) => {
