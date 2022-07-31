@@ -1,41 +1,26 @@
 # Assessment 
 
-json data parsing, transforming and storing into db. 
+[
+    {"Gender": "Male", "HeightCm": 171, "WeightKg": 96 }, 
+    {"Gender": "Male", "HeightCm": 161, "WeightKg":85 },
+    { "Gender": "Male", "HeightCm": 180, "WeightKg": 77 },
+    { "Gender": "Female", "HeightCm": 166,"WeightKg": 62},
+    {"Gender": "Female", "HeightCm": 150, "WeightKg": 70},
+    {"Gender": "Female","HeightCm": 167, "WeightKg": 82}
+] as the input with weight and height
+parameters of a person, we have to perform the following:
+Calculate the BMI (Body Mass Index) using mass(kg)/height(m)*height(m), BMI Category and Health risk from
+Table 1 of the person and add them as 3 new columns
+2) Count the total number of overweight people using ranges in the column BMI Category of
+Table 1, check this is consistent programmatically and add any Other observations in the
+documentation
+3) Create build, teststo make sure the code is working as expected and this can be added to an
+automation build / test / deployment pipeline
 
 ---
 ## Requirements
 
 For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
-
-### Node
-- #### Node installation on Windows
-
-  Just go on [official Node.js website](https://nodejs.org/) and download the installer.
-Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com/)).
-
-- #### Node installation on Ubuntu
-
-  You can install nodejs and npm easily with apt install, just run the following commands.
-
-      $ sudo apt install nodejs
-      $ sudo apt install npm
-
-- #### Other Operating Systems
-  You can find more information about the installation on the [official Node.js website](https://nodejs.org/) and the [official NPM website](https://npmjs.org/).
-
-If the installation was successful, you should be able to run the following command.
-
-    $ node --version
-    v8.11.3
-
-    $ npm --version
-    6.1.0
-
-If you need to update `npm`, you can make it using `npm`! Cool right? After running the following command, just open again the command line and be happy.
-
-    $ npm install npm -g
-
----
 
 ## Install
 
@@ -51,3 +36,67 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 ## Test cases
 
     $ npm run test
+
+## Deployment process
+
+    Code will be push to github repository. And it will be automatically deployed in [heroku](https://dashboard.heroku.com/apps/code-20220728-tarak-no1)
+    
+## APIs Used
+    $ Json File Upload API: 
+        curl --location --request POST 'https://code-20220728-tarak-no1.herokuapp.com/api/v1/usage/upload' \
+        --form 'userData=@"/C:/Users/APPARAO/Documents/Downloads/code-20220728-tarak-no1/sample.json"'
+    Response Format:
+        {
+            "status": "success",
+            "message": "",
+            "data": true,
+            "error_code": ""
+        }
+
+    $ Display User Data API
+        curl --location --request GET 'https://code-20220728-tarak-no1.herokuapp.com/api/v1/usage/display?current_page=0&total_records=3'
+    Response Format:
+        {
+            "status": "success",
+            "message": "",
+            "data": {
+                "userData": [
+                    {
+                        "udId": 7,
+                        "createdAt": "2022-07-31T13:08:43.353Z",
+                        "updatedAt": "2022-07-31T13:08:43.353Z",
+                        "gender": "Male",
+                        "height": 171,
+                        "weight": 96,
+                        "bmi": 32.83,
+                        "bmiCategory": "Moderately obese",
+                        "healthRisk": "Medium risk"
+                    },
+                    {
+                        "udId": 8,
+                        "createdAt": "2022-07-31T13:08:43.353Z",
+                        "updatedAt": "2022-07-31T13:08:43.353Z",
+                        "gender": "Male",
+                        "height": 161,
+                        "weight": 85,
+                        "bmi": 32.79,
+                        "bmiCategory": "Moderately obese",
+                        "healthRisk": "Medium risk"
+                    },
+                    {
+                        "udId": 9,
+                        "createdAt": "2022-07-31T13:08:43.353Z",
+                        "updatedAt": "2022-07-31T13:08:43.353Z",
+                        "gender": "Male",
+                        "height": 180,
+                        "weight": 77,
+                        "bmi": 23.77,
+                        "bmiCategory": "Normal weight",
+                        "healthRisk": "Low risk"
+                    }
+                ],
+                "totalOverWeightPeople": 1
+            },
+            "error_code": ""
+        }
+
